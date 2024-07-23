@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Digimons</title>
+    <link rel="stylesheet" href="style.css" type="text/css">
+</head>
+<body>
+    <h2>Todos os Digimons</h2>
+    <div id="all-digimons"></div>
+
+    <h2>Digimons por Nível: Rookie</h2>
+    <div id="rookie-digimons"></div>
+
+    <h2>Digimon por Nome: Agumon</h2>
+    <div id="agumon-digimon"></div>
+
+    <script>
+        const urlAll = "https://digimon-api.vercel.app/api/digimon";
+        fetch(urlAll)
+        .then((response) => response.json())
+        .then((data) => {
+            data.forEach(digimon => {
+                const name = digimon.name;
+                const img = digimon.img;
+                const level = digimon.level;
+                const html = `
+                <div>
+                    <img src="${img}" alt="${name}">
+                    <h4>Nome: ${name}</h4>
+                    <h4>Nível: ${level}</h4>
+                </div>`;
+                document.getElementById('all-digimons').insertAdjacentHTML('beforeend', html);
+            });
+        });
+
+        const urlLevel = "https://digimon-api.vercel.app/api/digimon/level/Rookie";
+        fetch(urlLevel)
+        .then((response) => response.json())
+        .then((data) => {
+            data.forEach(digimon => {
+                const name = digimon.name;
+                const img = digimon.img;
+                const level = digimon.level;
+                const html = `
+                <div>
+                    <img src="${img}" alt="${name}">
+                    <h4>Nome: ${name}</h4>
+                    <h4>Nível: ${level}</h4>
+                </div>`;
+                document.getElementById('rookie-digimons').insertAdjacentHTML('beforeend', html);
+            });
+        });
+
+        const urlName = "https://digimon-api.vercel.app/api/digimon/name/Agumon";
+        fetch(urlName)
+        .then((response) => response.json())
+        .then((data) => {
+            data.forEach(digimon => {
+                const name = digimon.name;
+                const img = digimon.img;
+                const level = digimon.level;
+                const html = `
+                <div>
+                    <img src="${img}" alt="${name}">
+                    <h4>Nome: ${name}</h4>
+                    <h4>Nível: ${level}</h4>
+                </div>`;
+                document.getElementById('agumon-digimon').insertAdjacentHTML('beforeend', html);
+            });
+        });
+    </script>  
+</body>
+</html>
